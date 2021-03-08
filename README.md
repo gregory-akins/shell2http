@@ -1,14 +1,6 @@
 shell2http
 ==========
 
-[![GoDoc](https://godoc.org/github.com/msoap/shell2http?status.svg)](https://godoc.org/github.com/msoap/shell2http)
-[![Build Status](https://travis-ci.org/msoap/shell2http.svg?branch=master)](https://travis-ci.org/msoap/shell2http)
-[![Coverage Status](https://coveralls.io/repos/github/msoap/shell2http/badge.svg?branch=master)](https://coveralls.io/github/msoap/shell2http?branch=master)
-[![Report Card](https://goreportcard.com/badge/github.com/msoap/shell2http)](https://goreportcard.com/report/github.com/msoap/shell2http)
-[![Docker Pulls](https://img.shields.io/docker/pulls/msoap/shell2http.svg?maxAge=3600)](https://hub.docker.com/r/msoap/shell2http/)
-[![Homebrew formula exists](https://img.shields.io/badge/homebrew-🍺-d7af72.svg)](https://github.com/msoap/shell2http#install)
-[![Snap Status](https://build.snapcraft.io/badge/msoap/shell2http.svg)](https://snapcraft.io/shell2http)
-
 HTTP-server to execute shell commands. Designed for development, prototyping or remote control.
 Settings through two command line arguments, path and shell command.
 By default bind to :8080.
@@ -102,6 +94,25 @@ Examples
 
 ```sh
 shell2http /cal_html 'echo "<html><body><h1>Calendar</h1>Date: <b>$(date)</b><br><pre>$(cal $(date +%Y))</pre></body></html>"'
+```
+</details>
+
+<details><summary>Running MongoDB commands</summary>
+DockerFile
+```
+    FROM mongo-client
+
+RUN apk add bash
+
+RUN mkdir -p /http
+
+WORKDIR /http
+
+COPY ./commands.sh /http
+```
+docker-compose command
+```
+command: "-form /date date /form 'echo param: $$v_param  ; sh /http/commands.sh  '"
 ```
 </details>
 
