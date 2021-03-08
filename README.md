@@ -100,7 +100,7 @@ shell2http /cal_html 'echo "<html><body><h1>Calendar</h1>Date: <b>$(date)</b><br
 <details><summary>Running MongoDB commands</summary>
 DockerFile
 ```
-    FROM mongo-client
+FROM mongo-client
 
 RUN apk add bash
 
